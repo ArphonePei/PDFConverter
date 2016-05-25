@@ -5,13 +5,33 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Memento|Win32">
       <Configuration>Memento</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Memento|x64">
+      <Configuration>Memento</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_2017|Win32">
+      <Configuration>Release_2017</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_2017|x64">
+      <Configuration>Release_2017</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -22,10 +42,25 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Memento|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -34,48 +69,118 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Memento|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">generate.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">generate.bat</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">del /q ..\generated &amp;&amp; generate.bat</NMakeReBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">del /q ..\generated &amp;&amp; generate.bat</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">del /q ..\generated</NMakeCleanCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">del /q ..\generated</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
     <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">generate.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">generate.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">generate.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">generate.bat</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">del /q ..\..\generated &amp;&amp; generate.bat</NMakeReBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">del /q ..\..\generated &amp;&amp; generate.bat</NMakeReBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">del /q ..\..\generated &amp;&amp; generate.bat</NMakeReBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">del /q ..\..\generated &amp;&amp; generate.bat</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">del /q ..\..\generated</NMakeCleanCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">del /q ..\..\generated</NMakeCleanCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">del /q ..\..\generated</NMakeCleanCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">del /q ..\..\generated</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">generated\cmap_cns.h</NMakeOutput>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">generated\cmap_cns.h</NMakeOutput>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">generated\cmap_cns.h</NMakeOutput>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">generated\cmap_cns.h</NMakeOutput>
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
     <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">generate.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">generate.bat</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">del /q ..\..\generated &amp;&amp; generate.bat</NMakeReBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">del /q ..\..\generated &amp;&amp; generate.bat</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">del /q ..\..\generated</NMakeCleanCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">del /q ..\..\generated</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">generated\cmap_cns.h</NMakeOutput>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">generated\cmap_cns.h</NMakeOutput>
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
     <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Memento|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Memento|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
