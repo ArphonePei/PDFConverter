@@ -54,7 +54,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="DlgSample.rc">
+    <ResourceCompile Include="PDFConverter.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="PDFConverter_zhCN.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
