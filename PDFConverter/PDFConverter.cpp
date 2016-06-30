@@ -4,6 +4,7 @@
 
 #include "AcExtensionModule.h"
 #include "pdfapp.h"
+#include "resource.h"
 
 void render(char *filename, int pagenumber, int zoom, int rotation);
 void pdfapp_AcString2Utf8Char(AcString& str, char* utf8Name, int len=PATH_MAX);
@@ -99,7 +100,14 @@ void PDFConverter(BOOL bDwg)
 	if (arrFileName.length() == 1)
 	{
 		acedInitGet(4, NULL);
-		int rc = acedGetInt(_T("\nPlease input the page number, 0 for all <1>: "), &page);
+
+		// use resource for multi langeage.
+		// modify by yhl, 2016/6/29.
+		CString strPrompt;
+		CAcModuleResourceOverride rs;
+		strPrompt.LoadString(IDS_ASKFORPAGENUMBER);
+		int rc = acedGetInt(strPrompt, &page);
+// 		int rc = acedGetInt(_T("\nPlease input the page number, 0 for all <1>: "), &page);
 
 		if (RTNONE == rc)
 		{
@@ -150,8 +158,13 @@ void initApp()
 		-1,
 		theArxDLL.ModuleResourceInstance());
 
-	acutPrintf(_T("\nThis application is released under the terms of GNU-GPL v3."));
-	acutPrintf(_T("\nYou can access its source code here: <https://github.com/ArphonePei/PDFConverter>"));
+	// use resource for multi langeage.
+	// modify by yhl, 2016/6/29.
+	CString strGpl;
+	strGpl.LoadString(IDS_GPLDECLAREMENT);
+	acutPrintf(strGpl);
+// 	acutPrintf(_T("\nThis application is released under the terms of GNU-GPL v3."));
+// 	acutPrintf(_T("\nYou can access its source code here: <https://github.com/ArphonePei/PDFConverter>"));
 }
 
 void unloadApp()
