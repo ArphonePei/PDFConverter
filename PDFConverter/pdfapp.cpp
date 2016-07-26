@@ -1,8 +1,13 @@
 #include "StdAfx.h"
+#include "resource.h"
+#include "AcExtensionModule.h"
+
 #include "rxmfcapi.h"
 
 #include "pdfapp.h"
 #include "rebuildPline.h"
+
+
 
 BOOL REALEQ(double d1, double d2, double fuzz=ZEROFUZZ);
 BOOL REALEQ(double d1, double d2, double fuzz)
@@ -1119,6 +1124,21 @@ void pdfapp_convertCurPage(pdfapp_t* app)
 	}
 	delete pDb;
 	app->pDb = NULL;
+
+	if (app->pageno > 0)
+	{
+		resbuf rb;
+		rb.restype = RTSHORT;
+		rb.resval.rint = 0;
+		acedSetVar(_T("CMDECHO"), &rb);
+		CString strPrompt;
+		CAcModuleResourceOverride rs;
+		strPrompt.LoadString(IDS_PICKINSPT);
+		acutPrintf((LPCTSTR)strPrompt);
+		acedCommand(RTSTR, _T("_Insert"), RTSTR, outputName.kACharPtr(), RTSTR, PAUSE, RTSTR, _T(""), RTSTR, _T(""), RTSTR, _T(""), RTNONE);
+		rb.resval.rint = 1;
+		acedSetVar(_T("CMDECHO"), &rb);
+	}
 }
 
 void pdfapp_open(pdfapp_t* app, char* filename, int reload)
