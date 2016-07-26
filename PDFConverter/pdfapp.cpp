@@ -1127,15 +1127,26 @@ void pdfapp_convertCurPage(pdfapp_t* app)
 
 	if (app->pageno > 0)
 	{
+		CString strPrompt;
+		CAcModuleResourceOverride rs;
+		strPrompt.LoadString(IDS_INSERT2CUR);
+		acedInitGet(0, _T("Yes No"));
+		ACHAR kword[32];
+		int rc = acedGetKword((LPCTSTR)strPrompt, kword);
+		if ((RTCAN == rc) || (!_tcscmp(kword, _T("No"))))
+		{
+			return;
+		}
+
 		resbuf rb;
 		rb.restype = RTSHORT;
 		rb.resval.rint = 0;
 		acedSetVar(_T("CMDECHO"), &rb);
-		CString strPrompt;
-		CAcModuleResourceOverride rs;
+
 		strPrompt.LoadString(IDS_PICKINSPT);
 		acutPrintf((LPCTSTR)strPrompt);
 		acedCommand(RTSTR, _T("_Insert"), RTSTR, outputName.kACharPtr(), RTSTR, PAUSE, RTSTR, _T(""), RTSTR, _T(""), RTSTR, _T(""), RTNONE);
+
 		rb.resval.rint = 1;
 		acedSetVar(_T("CMDECHO"), &rb);
 	}
