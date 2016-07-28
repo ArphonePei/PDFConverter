@@ -581,10 +581,13 @@ AcCmColor getColor(pdfapp_t* app, fz_display_node* pNode)
 	float rgb[FZ_MAX_COLORS];
 	pNode->colorspace->to_rgb(app->ctx, pNode->colorspace, pNode->color, rgb);
 	AcCmColor color;
+	color.setColorMethod(AcCmEntityColor::ColorMethod::kByColor);
 	color.setRGB(rgb[0]*255, rgb[1]*255, rgb[2]*255);
-	if (!color.red() && !color.green() && !color.blue())
+	if ((color.red() <= 50) && (color.green() <= 50) && (color.blue() <= 50))
 	{
-		color.setColorIndex(0);
+		//color.setColorIndex(0);
+		//color.setColorMethod(AcCmEntityColor::ColorMethod::kByBlock);
+		color.setRGB(255-rgb[0]*255, 255-rgb[1]*255, 255-rgb[2]*255);
 	}
 	return color;
 }
@@ -799,6 +802,15 @@ AcString makeSegment(TextProp& prop)
 	return ret;
 }
 
+double calTextRotation(fz_matrix& mtx)
+{
+	AcGeMatrix2d mat;
+	mat.setCoordSystem(AcGePoint2d(mtx.e, mtx.f), AcGeVector2d(mtx.a, mtx.c), AcGeVector2d(mtx.b, mtx.d));
+	AcGeVector2d vec(1, 0);
+	vec.transformBy(mat);
+	return 2 * M_PI - vec.angle();
+}
+
 void creatText(pdfapp_t* app, fz_display_node* pNode)
 {
 	AcCmColor color = getColor(app, pNode);
@@ -815,11 +827,7 @@ void creatText(pdfapp_t* app, fz_display_node* pNode)
 	fromAcDbTextStyle(tmpStyle, idTxtStyle);
 	fz_matrix mtx = pNode->item.text->trm;
 	double expansion = fz_matrix_expansion(&mtx);
-	double rot = acos(mtx.a / expansion);
-	if (mtx.b < 0)
-	{
-		rot = -1 * rot;
-	}
+	double rot = calTextRotation(mtx);
 	TextProp curProp;
 	AcString curSegs;
 	AcGePoint3d pos;

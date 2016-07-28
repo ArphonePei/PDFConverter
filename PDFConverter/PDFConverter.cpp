@@ -135,6 +135,89 @@ void PDF2DXF()
 	PDFConverter(FALSE);
 }
 
+struct Buffer
+{
+	unsigned char *data;
+	int length;
+};
+
+bool createSVGDataStr( AcString& filenamePDF, Buffer & outputBuffer )
+{
+	fz_context* ctx = nullptr;
+	ctx = fz_new_context(NULL, NULL, FZ_STORE_DEFAULT);
+	if (nullptr == ctx)
+	{
+		return false;
+	}
+
+	fz_document* doc = nullptr;
+	fz_try(ctx)
+	{
+		char utf8Name[PATH_MAX];
+		pdfapp_AcString2Utf8Char(filenamePDF, utf8Name);
+		doc = fz_open_document(ctx, utf8Name);
+	}
+	fz_catch(ctx)
+	{ 
+		fz_free_context(ctx);
+		return false;
+	}
+
+	int pageCount = fz_count_pages(doc);
+	if (pageCount < 1)
+		return false;
+
+	fz_page* page = fz_load_page(doc, 0);
+
+	fz_rect brect;
+	fz_bound_page(doc, page, &brect);
+
+	fz_buffer* buffer = fz_new_buffer(ctx, 1024);
+	fz_output* output = fz_new_output_with_buffer(ctx, buffer);
+	fz_device* device = fz_new_svg_device(ctx, output, brect.x1 - brect.x0, brect.y1 - brect.y0);
+
+	fz_run_page(doc, page, device, &fz_identity, NULL);
+
+	outputBuffer.data   = buffer->data;
+	outputBuffer.length = buffer->len;
+
+	fz_free_device(device);
+	fz_close_output(output);
+	fz_free_page(doc, page);
+	fz_free_context(ctx);
+
+	return true;
+}
+
+void PDF2SVG()
+{
+	resbuf* rb = getFileNameInput();
+	resbuf* pRb = rb;
+	AcStringArray arrFileName;
+	while (pRb)
+	{
+		arrFileName.append(pRb->resval.rstring);
+		pRb = pRb->rbnext;
+	}
+	acutRelRb(rb);
+	rb = NULL;
+
+	Buffer svgBuffer;
+	if (!createSVGDataStr(arrFileName[0], svgBuffer))
+	{
+		acutPrintf(_T("\nFail to convert to SVG."));
+		return;
+	}
+
+	AcString outputName;
+	outputName.format(_T("%s.svg"), arrFileName[0].kACharPtr());
+	CFile file;
+	file.Open(outputName.kACharPtr(), CFile::modeCreate | CFile::modeWrite);
+	file.Write(svgBuffer.data, svgBuffer.length);
+	file.Close();
+	acutPrintf(_T("\nDone."));
+}
+
 void initApp()
 { 
 	// register a command with the AutoCAD command mechanism
@@ -157,6 +240,17 @@ void initApp()
 		NULL,
 		-1,
 		theArxDLL.ModuleResourceInstance());
+
+/*
+	acedRegCmds->addCommand(_T("ZOSP_PDF_TOOLs"), 
+		_T("PDF2SVG"), 
+		_T("PDF2SVG"), 
+		ACRX_CMD_MODAL, 
+		PDF2SVG,
+		NULL,
+		-1,
+		theArxDLL.ModuleResourceInstance());
+*/
 
 	// use resource for multi langeage.
 	// modify by yhl, 2016/6/29.
