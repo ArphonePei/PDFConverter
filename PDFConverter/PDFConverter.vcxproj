@@ -63,6 +63,7 @@
   <ItemGroup>
     <ResourceCompile Include="PDFConverter.rc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_2017_zhCN|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_2017_zhCN|x64'">true</ExcludedFromBuild>
     </ResourceCompile>
     <ResourceCompile Include="PDFConverter_zhCN.rc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -188,9 +189,9 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)..\..\bin\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)..\..\bin\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">$(SolutionDir)..\..\bin\$(Configuration)\$(Platform)\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_2017_zhCN|Win32'">$(SolutionDir)..\..\bin\$(Configuration)\$(Platform)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_2017_zhCN|Win32'">$(SolutionDir)..\bin\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">$(SolutionDir)..\..\bin\$(Configuration)\$(Platform)\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_2017_zhCN|x64'">$(SolutionDir)..\..\bin\$(Configuration)\$(Platform)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_2017_zhCN|x64'">$(SolutionDir)..\bin\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)..\..\bin\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\..\bin\$(Configuration)\</OutDir>
   </PropertyGroup>
@@ -199,6 +200,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_2017_zhCN|Win32'">
     <TargetExt>.zrx</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_2017_zhCN|x64'">
+    <TargetExt>.zrx</TargetExt>
+    <TargetName>$(ProjectName)$(Platform)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -350,7 +355,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libmupdf.lib;libthirdparty.lib;libmupdf-js-none.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\platform\win32\$(Configuration);C:\ZRXSDK_2017\ZRXSDK_Win_32bit\lib-Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\platform\win32\$(Platform)\$(Configuration);C:\ZRXSDK_2017\ZRXSDK_Win_32bit\lib-Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(ProjectName).def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -403,7 +408,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libmupdf.lib;libthirdparty.lib;libmupdf-js-none.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\platform\win32\$(Configuration);C:\ZRXSDK_2017\ZRXSDK_Win_64bit\lib-X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\platform\win32\$(Platform)\$(Configuration);C:\ZRXSDK_2017\ZRXSDK_Win_64bit\lib-X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(ProjectName).def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
