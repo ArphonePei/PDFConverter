@@ -343,7 +343,7 @@ void createImage(pdfapp_t* app, fz_display_node* pNode, int& idx)
 			pdfapp_Utf8Char2AcString(app->docpath, docPath);
 			ACHAR out[_MAX_PATH];
 			removeExt(docPath, out);
-			path.format(_T("%s_%d.PNG"), out, idx);
+			path.format(_T("%s_%d_%d.PNG"), out, app->pageno, idx);
 			char utf8Name[PATH_MAX];
 			pdfapp_AcString2Utf8Char(path, utf8Name);
 			fz_write_png(app->ctx, pixmap, utf8Name, 0);
@@ -1088,6 +1088,8 @@ void pdfapp_convertCurPage(pdfapp_t* app)
 	AcString outputName;
 	ACHAR out[_MAX_PATH];
 	removeExt(app->strFileName.kACharPtr(), out);
+	bool singlePage = (app->pageno > 0);
+	app->pageno = abs(app->pageno);
 	if (app->bOutputDwg)
 	{
 		outputName.format(_T("%s_%d.DWG"), out, app->pageno);
@@ -1133,7 +1135,7 @@ void pdfapp_convertCurPage(pdfapp_t* app)
 	delete pDb;
 	app->pDb = NULL;
 
-	if (app->pageno > 0)
+	if (singlePage)
 	{
 		CString strPrompt;
 		CAcModuleResourceOverride rs;
@@ -1228,10 +1230,8 @@ void pdfapp_open(pdfapp_t* app, char* filename, int reload)
 	}
 
 
-/*
-	if (app->pageno < 1)
+	if (app->pagecount == 1)
 		app->pageno = 1;
-*/
 	if (app->pageno > app->pagecount)
 		app->pageno = app->pagecount;
 	if (app->resolution < MINRES)
@@ -1259,7 +1259,7 @@ void pdfapp_open(pdfapp_t* app, char* filename, int reload)
 		acedSetStatusBarProgressMeter(msg, 0, app->pagecount);
 		for (int i=1; i<=app->pagecount; i++)
 		{
-			app->pageno = i;
+			app->pageno = -1 * i;//把页数变成负的是为了判断是否正在转换全部页，如是则不要在转换后提示是否插入
 			pdfapp_convertCurPage(app);
 			acedSetStatusBarProgressMeterPos(-1);
 		}

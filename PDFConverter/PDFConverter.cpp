@@ -213,7 +213,8 @@ void PDF2SVG()
 	outputName.format(_T("%s.svg"), arrFileName[0].kACharPtr());
 	CFile file;
 	file.Open(outputName.kACharPtr(), CFile::modeCreate | CFile::modeWrite);
-	file.Write(svgBuffer.data, svgBuffer.length);
+	CString outData = svgBuffer.data;
+	file.Write((LPCTSTR)outData, outData.GetLength()*sizeof(TCHAR));
 	file.Close();
 	acutPrintf(_T("\nDone."));
 }
@@ -241,7 +242,6 @@ void initApp()
 		-1,
 		theArxDLL.ModuleResourceInstance());
 
-/*
 	acedRegCmds->addCommand(_T("ZOSP_PDF_TOOLs"), 
 		_T("PDF2SVG"), 
 		_T("PDF2SVG"), 
@@ -250,7 +250,6 @@ void initApp()
 		NULL,
 		-1,
 		theArxDLL.ModuleResourceInstance());
-*/
 
 	// use resource for multi langeage.
 	// modify by yhl, 2016/6/29.

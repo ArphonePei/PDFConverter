@@ -68,6 +68,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_2017|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_2017|x64'">true</ExcludedFromBuild>
     </ResourceCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -312,7 +313,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\include;C:\ZRXSDK_2017\ZRXSDK_Win_32bit\arxport;C:\ZRXSDK_2017\ZRXSDK_Win_32bit\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;C:\ZRXSDK_2017\ZRXSDK\arxport;C:\ZRXSDK_2017\ZRXSDK\inc</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_AFXDLL;PDFCONVERTER_MODULE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -323,7 +324,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libmupdf.lib;libthirdparty.lib;libmupdf-js-none.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\platform\win32\$(Configuration);C:\ZRXSDK_2017\ZRXSDK_Win_32bit\lib-Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\platform\win32\$(Configuration);C:\ZRXSDK_2017\ZRXSDK\lib-Win32</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(ProjectName).def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -366,7 +367,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\include;C:\ZRXSDK_2017\ZRXSDK_Win_64bit\arxport;C:\ZRXSDK_2017\ZRXSDK_Win_64bit\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;C:\ZRXSDK_2017\ZRXSDK\arxport;C:\ZRXSDK_2017\ZRXSDK\inc</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_AFXDLL;PDFCONVERTER_MODULE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -377,7 +378,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libmupdf.lib;libthirdparty.lib;libmupdf-js-none.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\platform\win32\$(Configuration);C:\ZRXSDK_2017\ZRXSDK_Win_64bit\lib-X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\platform\win32\$(Configuration);C:\ZRXSDK_2017\ZRXSDK\lib-X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(ProjectName).def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
