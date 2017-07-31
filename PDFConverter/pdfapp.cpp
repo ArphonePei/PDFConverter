@@ -583,10 +583,26 @@ AcCmColor getColor(pdfapp_t* app, fz_display_node* pNode)
 	AcCmColor color;
 	color.setColorMethod(AcCmEntityColor::ColorMethod::kByColor);
 	color.setRGB(rgb[0]*255, rgb[1]*255, rgb[2]*255);
-	if ((color.red() <= 50) && (color.green() <= 50) && (color.blue() <= 50))
+	if ((color.red()==0) && (color.green()==0) && (color.blue()==0))
 	{
-		//color.setColorIndex(0);
-		//color.setColorMethod(AcCmEntityColor::ColorMethod::kByBlock);
+		color.setRGB(255, 255, 255);
+	}
+
+	AcColorSettings cs;
+	AcCmColor bkcolor;
+	bkcolor.setColorMethod(AcCmEntityColor::ColorMethod::kByColor);
+	if (TRUE == acedGetCurrentColors(&cs))
+	{
+		bkcolor.setRGB(cs.dwGfxModelBkColor & 0xff, (cs.dwGfxModelBkColor >> 8) & 0xff, (cs.dwGfxModelBkColor >> 16) & 0xff);
+	}
+	else
+	{
+		bkcolor.setRGB(33, 40, 48);
+	}
+	if ((abs(color.red() - bkcolor.red()) < 35) && 
+		(abs(color.green() - bkcolor.green()) < 35) &&
+		(abs(color.blue() - bkcolor.blue()) < 35))
+	{
 		color.setRGB(255-rgb[0]*255, 255-rgb[1]*255, 255-rgb[2]*255);
 	}
 	return color;
@@ -659,24 +675,24 @@ void createPath(pdfapp_t* app, fz_display_node* pNode, std::map<Adesk::UInt16, s
 void getBBoxFeature(pdfapp_t* app, fz_display_node* pNode, int i, fz_matrix& mtx, AcGePoint3d& pos, double& boxHeight, double& boxWidth, fz_point& oPt, double& oHeight)
 {
 	fz_rect bbox;
-	fz_bound_glyph(app->ctx, pNode->item.text->font, pNode->item.text->items[i].gid, &fz_identity, &bbox);
+	fz_bound_glyph(app->ctx, pNode->item.text->font, pNode->item.text->items[i].gid, &mtx/*&fz_identity*/, &bbox);
 	fz_point pt;
 	oPt.x = pt.x = bbox.x0;
 	oPt.y = pt.y = bbox.y0;
 	oHeight = fz_abs(bbox.y1 - bbox.y0);
-	fz_transform_point(&pt, &mtx);
+// 	fz_transform_point(&pt, &mtx);
 	pos.set(pt.x, pt.y, 0);
 
 	fz_point wid;
 	wid.x = bbox.x1 - bbox.x0;
 	wid.y = 0;
-	fz_transform_vector(&wid, &mtx);
+// 	fz_transform_vector(&wid, &mtx);
 	boxWidth = sqrt(wid.x*wid.x + wid.y*wid.y);
 
 	fz_point hi;
 	hi.x = 0;
 	hi.y = bbox.y1 - bbox.y0;
-	fz_transform_vector(&hi, &mtx);
+// 	fz_transform_vector(&hi, &mtx);
 	boxHeight = sqrt(hi.x*hi.x + hi.y*hi.y);
 }
 
@@ -825,7 +841,8 @@ void creatText(pdfapp_t* app, fz_display_node* pNode)
 	}
 	AcGiTextStyle tmpStyle;
 	fromAcDbTextStyle(tmpStyle, idTxtStyle);
-	fz_matrix mtx = pNode->item.text->trm;
+	fz_matrix mtx;
+	fz_copy_matrix(&mtx, &pNode->item.text->trm);
 	double expansion = fz_matrix_expansion(&mtx);
 	double rot = calTextRotation(mtx);
 	TextProp curProp;
