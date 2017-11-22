@@ -18,7 +18,7 @@ void pdfapp_open(pdfapp_t* app, char* filename, int reload);
 static char THIS_FILE[] = __FILE__;
 #endif
 
-extern "C" HWND adsw_acadMainWnd();
+extern HWND adsw_acadMainWnd();
 
 AC_IMPLEMENT_EXTENSION_MODULE(theArxDLL);
 
